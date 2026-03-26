@@ -1,0 +1,51 @@
+ML Debugging
+
+Technique: Check your data
+Bug: A model perdicting burger prices performs poorly because several burgers have 0 as their price entry because of missing data
+Explanation: The missing values in the target column made it so the output is skewed incorrectly
+Why This Technique: Checking your data would allow you to see this in your EDA
+
+Technique: Check your code
+Bug: A model predicts wrong because the labels were encoded as 0 and 2 instead of 0 and 1
+Explanation: The typo in the encdoing led to the model not being able to interpret the data
+Why This Technique: Things like this happen all the time so reviewing your code is important to catch accidents like this.
+
+Technique: Verify you model architecture
+Bug: A simple model for filtering spam is instead a 10 layer neural network that trains extremley slowly and is very poor
+Explanation: The model architecture is far to complex for the task at hand
+Why this Technique: Checking if the architecture fits the question would allow you to use a more simple approach
+
+Technique: Hyperparamter Tuning 
+Bug: A decision tree remembers the whole training set, but it doesn't work on new data because the tree depth was left as infinite
+Explanation: Without a maximum depth limit, the tree keeps growing until it fits every training example perfectly, which is called overfitting
+Why This Technique: Using grid search to tune the max depth hyperparameter would find a depth that works for new data as well
+
+Technique: Cross-Validation
+Bug: A model looks like it is 95% accurate, but it was only ever tested on one small group of data that was easy to work with
+Explanation: One train/test split got lucky and put all the hard examples in the training set
+Why This Technique: Cross-validation tests the model on more than one split, which gives a more accurate average accuracy
+
+Technique: Model Visualization
+Bug: A hiring model turns down most applicants from one university, even though their qualifications are the same as those of accepted applicants
+Explanation: Because of bias in the training data from the past, the model learned to give the school name a lot of weight
+Why This Technique: A feature importance plot would show that the school name is a suspiciously high-weight predictor, which would show that there is bias
+
+Technique: Traning Progress Tracking
+Bug: A model that was trained for 100 epochs does worse than the same model that was trained for 20 epochs
+Explanation: After about 20 epochs, the model overfit to the training data and kept getting worse from there
+Why This Technique: If you plot validation loss over time, you can see exactly when performance peaked and stop training there
+
+Technique: Start Simple
+Bug: A group of people spends two weeks making a neural network that can tell if an email is important, but it only works a little better than a keyword search
+Explanation: The issue was simple, allowing a fundamental rule-based method to effectively capture the majority of the signal
+Why This Technique: A simple baseline would have shown in an hour that a complicated model wasn't needed
+
+Technique: Benchmark Models
+Bug: A new recommendation algorithm is praised for being 80% accurate until someone points out that always recommending the most popular item also gets 79%
+Explanation: The complicated model didn't add much value
+Why This Technique: If you had first compared it to a naive baseline, you would have quickly seen that the model wasn't earning its complexity
+
+Technique: Deployment Testing
+Bug: A weather prediction model works well in the winter but not so well in the summer
+The model was only trained on data from the winter and never saw weather patterns from the warm season
+Why This Technique: After deployment, testing the model on real-world data from different seasons would show the drop in performance during those seasons
